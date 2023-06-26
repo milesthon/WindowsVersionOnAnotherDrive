@@ -14,16 +14,15 @@ cls
 FOR /F "tokens=3,4" %%I in ('reg query "HKLM\%disk%\Microsoft\Windows NT\CurrentVersion" /v ProductName')  Do set "ProductName=%%I %%J"
 FOR /F "tokens=3,4" %%I in ('reg query "HKLM\%disk%\Microsoft\Windows NT\CurrentVersion" /v EditionID')    Do set "EditionID=%%I %%J"
 FOR /F "tokens=3,4" %%I in ('reg query "HKLM\%disk%\Microsoft\Windows NT\CurrentVersion" /v CurrentBuild') Do set "CurrentBuild=%%I %%J"
-ECHO.&ECHO %ProductName% %EditionID%%CurrentBuild%&ECHO.
-PAUSE
 ECHO.&ECHO REG UNLOAD..&ECHO.
 REG UNLOAD HKLM\%disk%                                        2>nul >nul
-EXIT
+cls
+ECHO.&ECHO %ProductName% %EditionID%%CurrentBuild%&ECHO.
+PAUSE&EXIT
 
 :CDrive
 FOR /F "tokens=3,4" %%I in ('reg query "HKLM\SOFTWARE\Microsoft\Windows NT\CurrentVersion" /v ProductName')  Do set "ProductName=%%I %%J"
 FOR /F "tokens=3,4" %%I in ('reg query "HKLM\SOFTWARE\Microsoft\Windows NT\CurrentVersion" /v EditionID')    Do set "EditionID=%%I %%J"
 FOR /F "tokens=3,4" %%I in ('reg query "HKLM\SOFTWARE\Microsoft\Windows NT\CurrentVersion" /v CurrentBuild') Do set "CurrentBuild=%%I %%J"
 ECHO.&ECHO %ProductName% %EditionID%%CurrentBuild%&ECHO.
-PAUSE
-EXIT
+PAUSE&EXIT
